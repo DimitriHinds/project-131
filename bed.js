@@ -1,6 +1,6 @@
 Status = "";
 bed_img = "";
-
+objects = [];
 function preload(){
     bed_img = loadImage("bed.jpg");
 }
@@ -23,8 +23,21 @@ function gotResults(error,results){
         console.error(error);
     }
     console.log(results);
+    objects = results;
 }
 
 function draw(){
     image(bed_img,0,0,640,350);
+    if(Status != ""){
+        for(i = 0; i < objects.length; i++){
+            document.getElementById("status").innerHTML = "Status: Objects Detected";
+
+            fill("#FF0000");
+            percent = floor(objects[i].confidence * 100);
+            text(objects[i].label + " " + percent + "%",objects[i].x + 15, objects[i].y + 15);
+            noFill();
+            stroke("#FF0000");
+            rect(objects[i].x + 14, objects[i].y, objects[i].width + 370, objects[i].height + 100);
+        }
+    }
 }

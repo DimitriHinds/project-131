@@ -1,8 +1,8 @@
 Status = "";
-car_img = "";
+cake_img = "";
 objects = [];
 function preload(){
-    car_img = loadImage("car.jpg");
+    cake_img = loadImage("cake.jpg");
 }
 
 function setup(){
@@ -15,7 +15,7 @@ function setup(){
 function modelLoaded(){
     console.log("Model Loaded!");
     Status = true;
-    object_Detector.detect(car_img,gotResults);
+    object_Detector.detect(cake_img,gotResults);
 }
 
 function gotResults(error,results){
@@ -27,7 +27,7 @@ function gotResults(error,results){
 }
 
 function draw(){
-    image(car_img,0,0,640,350);
+    image(cake_img,0,0,640,350);
     if(Status != ""){
         for(i = 0; i < objects.length; i++){
             document.getElementById("status").innerHTML = "Status: Objects Detected";
@@ -37,7 +37,7 @@ function draw(){
             text(objects[i].label + " " + percent + "%",objects[i].x + 20, objects[i].y + 15);
             noFill();
             stroke("#FF0000");
-            rect(objects[i].x + 14, objects[i].y, objects[i].width + 300, objects[i].height + 190);
+            rect(objects[i].x + 14, objects[i].y, objects[i].width + 390, objects[i].height + 130);
         }
     }
 }
